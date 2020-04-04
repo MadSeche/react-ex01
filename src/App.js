@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Router } from "@reach/router";
+import BookContextProvider from "./context/bookContext";
+
+import ReadingList from "./components/reading-list/ReadingList";
+import BookDetails from "./components/reading-list/BookDetails";
+
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BookContextProvider>
+        <Router>
+          <ReadingList path="/" />
+          <BookDetails path="/books/:bookId" />
+        </Router>
+      </BookContextProvider>
     </div>
   );
 }
